@@ -8,16 +8,15 @@ function TaskList({
     startEditing,
     cancelEditing,
     saveEditedTask,
-    deleteTask,
     toggleComplete,
     assignTag,
     clearTag,
-    setConfirmDeleteId,
+    openConfirmDialog,
     onDragEnd
 }) {
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="tasks">
+            <Droppable droppableId="tasks" isDropDisabled={false}>
                 {(provided) => (
                     <ul
                         className="space-y-3"
@@ -28,18 +27,15 @@ function TaskList({
                             <TaskItem
                                 key={task.id}
                                 task={task}
-                                index={index}
                                 editingTaskId={editingTaskId}
                                 editedTaskText={editedTaskText}
                                 startEditing={startEditing}
                                 cancelEditing={cancelEditing}
                                 saveEditedTask={saveEditedTask}
-                                deleteTask={deleteTask}
                                 toggleComplete={toggleComplete}
                                 assignTag={assignTag}
                                 clearTag={clearTag}
-                                setConfirmDeleteId={setConfirmDeleteId}
-                                provided = {provided}
+                                openConfirmDialog={openConfirmDialog}
                             />
                         ))}
                         {provided.placeholder}

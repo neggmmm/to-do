@@ -1,37 +1,34 @@
 import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faEdit, faCheck, faTimes, faTag } from "@fortawesome/free-solid-svg-icons";
-import { Draggable } from 'react-beautiful-dnd';
 
 function TaskItem({
     task,
-    index,
     editingTaskId,
     editedTaskText,
     startEditing,
     cancelEditing,
     saveEditedTask,
-    deleteTask,
     toggleComplete,
     assignTag,
     clearTag,
-    setConfirmDeleteId
-}) {
-      const [localEditedText, setLocalEditedText] = useState(editedTaskText);
+    openConfirmDialog
+  }) {
+    const [localEditedText, setLocalEditedText] = useState(editedTaskText);
     const inputRef = useRef(null);
-        useEffect(() => {
+
+    useEffect(() => {
         if (editingTaskId === task.id && inputRef.current) {
             inputRef.current.focus();
         }
     }, [editingTaskId, task.id]);
-     const handleEditInputChange = (e) => {
+
+    const handleEditInputChange = (e) => {
         setLocalEditedText(e.target.value);
     };
-    return (
 
-         <li
-            className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 px-5 py-3 rounded-xl shadow-md transition-all duration-200"
-           >
+    return (
+        <li className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 px-5 py-3 rounded-xl shadow-md transition-all duration-200">
             <div className="flex items-center">
                 <input
                     type="checkbox"
@@ -107,7 +104,7 @@ function TaskItem({
                             <FontAwesomeIcon icon={faEdit} size="lg" />
                         </button>
                         <button
-                            onClick={() => setConfirmDeleteId(task.id)}
+                            onClick={() => openConfirmDialog(task.id)}
                             className="text-red-500 hover:text-red-700 transition-colors duration-200 focus:outline-none"
                         >
                             <FontAwesomeIcon icon={faTrashCan} size="lg" />

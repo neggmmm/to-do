@@ -1,3 +1,6 @@
+"use client";
+import React from 'react';  // Import React
+
 function ConfirmationDialog({ isOpen, onConfirm, onCancel, message }) {
     if (!isOpen) {
         return null;

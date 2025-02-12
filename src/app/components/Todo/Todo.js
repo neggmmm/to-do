@@ -71,7 +71,7 @@ function Todo() {
         setTasks(tasks.filter((task) => task.id !== idToRemove));
         setConfirmDeleteId(null); // Close the dialog after deleting
     };
-    
+
     const openConfirmDialog = (id) => {
         setConfirmDeleteId(id);
     };
@@ -257,7 +257,7 @@ function Todo() {
         clearTag={clearTag}
         openConfirmDialog={openConfirmDialog}
     />
-    <ConfirmationDialog
+ <ConfirmationDialog
     isOpen={confirmDeleteId !== null}
     onConfirm={() => deleteTask(confirmDeleteId)}
     onCancel={cancelConfirmDialog}
